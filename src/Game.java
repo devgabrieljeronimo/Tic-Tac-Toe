@@ -1,16 +1,15 @@
 public class Game {
     private int rounds;
     private GameModel gameModel;
-    private Game game;
-    private Game currentGame;
-    private Player playerTurn;
+    private Player playerOne;
+    private Player playerTwo;
     private String[][] table;
 
-    public Game(int rounds, GameModel gameModel, Player playerTurn) {
+    public Game(int rounds, GameModel gameModel, Player playerOne, Player playerTwo) {
         this.rounds = rounds;
         this.gameModel = gameModel;
-        this.game = null;
-        this.playerTurn = playerTurn;
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
         this.table = new String[][] {
                 {" ", " ", " "},
                 {" ", " ", " "},
@@ -18,17 +17,11 @@ public class Game {
         };
     }
 
-    public void newGame(Game lastGame) {
-        if(lastGame == null) {
-            this.game = new Game();
-        }
-        else {
-            lastGame = new Game();
-            this.game = lastGame;
-        }
+    public void newGame() {
+
     }
 
-    public void updateGame() {
+    public void updateGame(String[][] table) {
 
     }
 
@@ -57,12 +50,20 @@ public class Game {
         this.gameModel = gameModel;
     }
 
-    public Player getPlayerTurn() {
-        return playerTurn;
+    public Player getPlayerOne() {
+        return playerOne;
     }
 
-    public void setPlayerTurn(Player playerTurn) {
-        this.playerTurn = playerTurn;
+    public void setPlayerOne(Player playerOne) {
+        this.playerOne = playerOne;
+    }
+
+    public Player getPlayerTwo() {
+        return playerTwo;
+    }
+
+    public void setPlayerTwo(Player playerTwo) {
+        this.playerTwo = playerTwo;
     }
 
     public String[][] getTable() {
