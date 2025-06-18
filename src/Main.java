@@ -27,7 +27,8 @@ public class Main {
 
         // Windows config
         frame.setLayout(null);
-        frame.setBounds(700, 350, 300, 300);
+        frame.setBounds(0, 0, 300, 300);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
