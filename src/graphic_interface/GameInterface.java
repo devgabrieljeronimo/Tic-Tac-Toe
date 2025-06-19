@@ -1,7 +1,6 @@
 package graphic_interface;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class GameInterface extends JFrame {
@@ -71,6 +70,7 @@ public class GameInterface extends JFrame {
         currentOpponentText.setBounds(50, 270, 100, 50);
         currentRoundText.setBounds(250, 270, 100, 50);
         startGameButton.setBounds(165, 320, 75, 50);
+        startGameButton.setBackground(Color.GREEN);
         startGameButton.setFocusPainted(false);
         startGameButton.setBorderPainted(false);
         startGameButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
