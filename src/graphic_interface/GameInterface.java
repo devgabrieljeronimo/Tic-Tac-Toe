@@ -10,10 +10,9 @@ public class GameInterface extends JFrame {
     private JButton playButton;
     private JPanel lobbyPanel;
 
-    private JLabel gameOpponentText, gameRoundText;
-    private JButton backToLobbyButton;
-    private JButton playerOpponentButton, botOpponentButton;
-    private JButton oneRoundButton, twoRoundButton, threeRoundButton, fourRoundButton;
+    private JLabel gameOpponentText, gameRoundText, currentOpponentText, currentRoundText;
+    private JButton startGameButton, backToLobbyButton, playerOpponentButton, botOpponentButton,
+            oneRoundButton, twoRoundButton, threeRoundButton, fourRoundButton;
     private JPanel configGamePanel;
 
     public GameInterface() {
@@ -39,11 +38,15 @@ public class GameInterface extends JFrame {
 
     private void initObjects() {
         // Instance objects of lobbyPanel
-        gameTitle = new JLabel("TicTacToe");
+        gameTitle = new JLabel("Tic\nTac\nToe");
         playButton = new JButton("Play");
         // Instance objects of configGamePanel
         gameOpponentText = new JLabel("Opponent");
-        backToLobbyButton = new JButton("Back");
+        gameRoundText = new JLabel("Rounds");
+        currentOpponentText = new JLabel("Opponent: player");
+        currentRoundText = new JLabel("Rounds: 1");
+        startGameButton = new JButton("Start");
+        backToLobbyButton = new JButton("X");
         playerOpponentButton = new JButton("Player");
         botOpponentButton = new JButton("Bot");
         oneRoundButton = new JButton("One");
@@ -54,17 +57,32 @@ public class GameInterface extends JFrame {
 
     private void modifyObjects() {
         // Modify objects of lobbyPanel
-        gameTitle.setBounds(320, 325, 300, 150);
+        gameTitle.setBounds(270, 250, 200, 200);
+        gameTitle.setFont(new Font("Arial", Font.BOLD, 30));
         playButton.setBounds(300, 450, 100, 50);
+        playButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         // Modify objects of configGamePanel
         gameOpponentText.setBounds(170, 0, 100, 50);
-        backToLobbyButton.setBounds(165, 300, 75, 50);
+        gameRoundText.setBounds(175, 120, 100, 50);
+        currentOpponentText.setBounds(50, 270, 100, 50);
+        currentRoundText.setBounds(250, 270, 100, 50);
+        startGameButton.setBounds(165, 320, 75, 50);
+        startGameButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        backToLobbyButton.setBounds(370, 0, 30, 30);
+        backToLobbyButton.setBackground(Color.RED);
+        backToLobbyButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         playerOpponentButton.setBounds(50, 50, 100, 75);
+        playerOpponentButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         botOpponentButton.setBounds(250, 50, 100, 75);
-        oneRoundButton.setBounds(50, 150, 75, 75);
-        twoRoundButton.setBounds(125, 150, 75, 75);
-        threeRoundButton.setBounds(200, 150, 75, 75);
-        fourRoundButton.setBounds(275, 150, 75, 75);
+        botOpponentButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        oneRoundButton.setBounds(50, 170, 75, 75);
+        oneRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        twoRoundButton.setBounds(125, 170, 75, 75);
+        twoRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        threeRoundButton.setBounds(200, 170, 75, 75);
+        threeRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        fourRoundButton.setBounds(275, 170, 75, 75);
+        fourRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     private void addObjects() {
@@ -73,6 +91,10 @@ public class GameInterface extends JFrame {
         lobbyPanel.add(playButton);
         // Add to configGamePanel
         configGamePanel.add(gameOpponentText);
+        configGamePanel.add(gameRoundText);
+        configGamePanel.add(currentOpponentText);
+        configGamePanel.add(currentRoundText);
+        configGamePanel.add(startGameButton);
         configGamePanel.add(backToLobbyButton);
         configGamePanel.add(playerOpponentButton);
         configGamePanel.add(botOpponentButton);
@@ -110,6 +132,7 @@ public class GameInterface extends JFrame {
 
     private void addButtonEvents() {
         playButton.addActionListener(e -> playButtonClicked());
+        startGameButton.addActionListener(e -> startGameButtonClicked());
         backToLobbyButton.addActionListener((e -> backToLobbyButtonClicked()));
     }
 
@@ -119,6 +142,10 @@ public class GameInterface extends JFrame {
 
         configGamePanel.setEnabled(true);
         configGamePanel.setVisible(true);
+    }
+
+    private void startGameButtonClicked() {
+
     }
 
     private void backToLobbyButtonClicked() {
