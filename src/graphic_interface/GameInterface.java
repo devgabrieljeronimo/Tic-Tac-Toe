@@ -26,7 +26,7 @@ public class GameInterface extends JFrame {
         setResizable(false);
         setVisible(true);
 
-        getContentPane().setBackground(Color.gray);
+        getContentPane().setBackground(Color.GRAY);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
@@ -163,26 +163,40 @@ public class GameInterface extends JFrame {
     }
 
     private void playerOpponentButtonClicked() {
-
+        playerOpponentButton.setBackground(Color.RED);
+        botOpponentButton.setBackground(Color.GRAY);
     }
 
     private void botOpponentButtonClicked() {
-
+        botOpponentButton.setBackground(Color.RED);
+        playerOpponentButton.setBackground(Color.GRAY);
     }
 
     private void oneRoundButtonClicked() {
-
+        oneRoundButton.setBackground(Color.RED);
+        twoRoundButton.setBackground(Color.GRAY);
+        threeRoundButton.setBackground(Color.GRAY);
+        fourRoundButton.setBackground(Color.GRAY);
     }
 
     private void twoRoundButtonClicked() {
-
+        twoRoundButton.setBackground(Color.RED);
+        oneRoundButton.setBackground(Color.GRAY);
+        threeRoundButton.setBackground(Color.GRAY);
+        fourRoundButton.setBackground(Color.GRAY);
     }
 
     private void threeRoundButtonClicked() {
-
+        threeRoundButton.setBackground(Color.RED);
+        oneRoundButton.setBackground(Color.GRAY);
+        twoRoundButton.setBackground(Color.GRAY);
+        fourRoundButton.setBackground(Color.GRAY);
     }
 
     private void fourRoundButtonClicked() {
-
+        fourRoundButton.setBackground(Color.RED);
+        oneRoundButton.setBackground(Color.GRAY);
+        twoRoundButton.setBackground(Color.GRAY);
+        threeRoundButton.setBackground(Color.GRAY);
     }
 }
