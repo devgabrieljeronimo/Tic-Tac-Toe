@@ -75,13 +75,13 @@ public class GameInterface extends JFrame {
         playerOpponentButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         botOpponentButton.setBounds(250, 50, 100, 75);
         botOpponentButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        oneRoundButton.setBounds(50, 170, 75, 75);
+        oneRoundButton.setBounds(50, 170, 70, 75);
         oneRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        twoRoundButton.setBounds(125, 170, 75, 75);
+        twoRoundButton.setBounds(127, 170, 70, 75);
         twoRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        threeRoundButton.setBounds(200, 170, 75, 75);
+        threeRoundButton.setBounds(203, 170, 70, 75);
         threeRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        fourRoundButton.setBounds(275, 170, 75, 75);
+        fourRoundButton.setBounds(280, 170, 70, 75);
         fourRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
@@ -134,6 +134,12 @@ public class GameInterface extends JFrame {
         playButton.addActionListener(e -> playButtonClicked());
         startGameButton.addActionListener(e -> startGameButtonClicked());
         backToLobbyButton.addActionListener((e -> backToLobbyButtonClicked()));
+        playerOpponentButton.addActionListener(e -> playerOpponentButtonClicked());
+        botOpponentButton.addActionListener(e -> botOpponentButtonClicked());
+        oneRoundButton.addActionListener(e -> oneRoundButtonClicked());
+        twoRoundButton.addActionListener(e -> twoRoundButtonClicked());
+        threeRoundButton.addActionListener(e -> threeRoundButtonClicked());
+        fourRoundButton.addActionListener(e -> fourRoundButtonClicked());
     }
 
     private void playButtonClicked() {
