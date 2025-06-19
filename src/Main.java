@@ -1,7 +1,9 @@
 import graphic_interface.GameInterface;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
-        GameInterface gameInterface = new GameInterface();
+        SwingUtilities.invokeLater(GameInterface::new);
     }
 }
