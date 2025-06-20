@@ -1,9 +1,10 @@
 public class Player {
     protected int points;
-    protected Symbol symbol;
+    protected PlayerSymbol playerSymbol;
 
-    protected void play() {
-        
+    public Player(int points, PlayerSymbol playerSymbol) {
+        this.points = points;
+        this.playerSymbol = playerSymbol;
     }
 
     public int getPoints() {
@@ -19,7 +20,7 @@ public class Player {
         }
     }
 
-    public Symbol getSymbol() {
-        return symbol;
+    public PlayerSymbol getSymbol() {
+        return playerSymbol;
     }
 }
