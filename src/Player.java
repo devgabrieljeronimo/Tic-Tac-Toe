@@ -1,8 +1,10 @@
-public abstract class Player {
+public class Player {
     protected int points;
     protected Symbol symbol;
 
-    protected abstract void play();
+    protected void play() {
+        
+    }
 
     public int getPoints() {
         return points;
