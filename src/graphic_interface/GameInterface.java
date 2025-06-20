@@ -2,6 +2,17 @@ package graphic_interface;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.font.FontRenderContext;
+import java.awt.font.GlyphVector;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ImageObserver;
+import java.awt.image.RenderedImage;
+import java.awt.image.renderable.RenderableImage;
+import java.text.AttributedCharacterIterator;
+import java.util.Map;
+
 import game.*;
 
 public class GameInterface extends JFrame {
@@ -18,6 +29,13 @@ public class GameInterface extends JFrame {
     private JButton startGameButton, backToLobbyButton, playerOpponentButton, botOpponentButton,
             oneRoundButton, twoRoundButton, threeRoundButton, fourRoundButton;
     private JPanel configGamePanel;
+
+    private Image OImage;
+    private Image XImage;
+    private JLabel lineOne, lineTwo, lineThree, lineFour;
+    private JButton buttonOne, buttonTwo, buttonThree, buttonFour,
+            buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine;
+    private JPanel gamePanel;
 
     public GameInterface() {
         setTitle("TicTacToe");
@@ -57,12 +75,26 @@ public class GameInterface extends JFrame {
         currentRoundText = new JLabel("Rounds: 1");
         startGameButton = new JButton("Start");
         backToLobbyButton = new JButton("X");
-        playerOpponentButton = new JButton("players.Player");
+        playerOpponentButton = new JButton("Player");
         botOpponentButton = new JButton("Bot");
         oneRoundButton = new JButton("One");
         twoRoundButton = new JButton("Two");
         threeRoundButton = new JButton("Three");
         fourRoundButton = new JButton("Four");
+        // Instance  objects of gamePanel
+        buttonOne = new JButton();
+        buttonTwo = new JButton();
+        buttonThree = new JButton();
+        buttonFour = new JButton();
+        buttonFive = new JButton();
+        buttonSix = new JButton();
+        buttonSeven = new JButton();
+        buttonEight = new JButton();
+        buttonNine = new JButton();
+        lineOne = new JLabel();
+        lineTwo = new JLabel();
+        lineThree = new JLabel();
+        lineFour = new JLabel();
     }
 
     private void modifyObjects() {
@@ -70,9 +102,9 @@ public class GameInterface extends JFrame {
         gameTitle.setBounds(270, 250, 200, 200);
         gameTitle.setFont(new Font("Arial", Font.BOLD, 30));
         playButton.setBounds(300, 450, 100, 50);
-        playButton.setBackground(Color.GREEN);
         playButton.setBorderPainted(false);
         playButton.setFocusPainted(false);
+        playButton.setBackground(Color.GREEN);
         playButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         // Modify objects of configGamePanel
         gameOpponentText.setBounds(170, 0, 100, 50);
@@ -80,45 +112,70 @@ public class GameInterface extends JFrame {
         currentOpponentText.setBounds(50, 270, 100, 50);
         currentRoundText.setBounds(250, 270, 100, 50);
         startGameButton.setBounds(165, 320, 75, 50);
-        startGameButton.setBackground(Color.GREEN);
         startGameButton.setFocusPainted(false);
         startGameButton.setBorderPainted(false);
+        startGameButton.setBackground(Color.GREEN);
         startGameButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         backToLobbyButton.setBounds(370, 0, 30, 30);
-        backToLobbyButton.setBackground(Color.RED);
         backToLobbyButton.setBorderPainted(false);
         backToLobbyButton.setFocusPainted(false);
+        backToLobbyButton.setBackground(Color.RED);
         backToLobbyButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         playerOpponentButton.setBounds(50, 50, 100, 75);
-        playerOpponentButton.setBackground(Color.GRAY);
         playerOpponentButton.setBorderPainted(false);
         playerOpponentButton.setFocusPainted(false);
+        playerOpponentButton.setBackground(Color.GRAY);
         playerOpponentButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         botOpponentButton.setBounds(250, 50, 100, 75);
-        botOpponentButton.setBackground(Color.GRAY);
         botOpponentButton.setBorderPainted(false);
         botOpponentButton.setFocusPainted(false);
+        botOpponentButton.setBackground(Color.GRAY);
         botOpponentButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         oneRoundButton.setBounds(50, 170, 70, 75);
-        oneRoundButton.setBackground(Color.GRAY);
         oneRoundButton.setBorderPainted(false);
         oneRoundButton.setFocusPainted(false);
+        oneRoundButton.setBackground(Color.GRAY);
         oneRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         twoRoundButton.setBounds(127, 170, 70, 75);
-        twoRoundButton.setBackground(Color.GRAY);
         twoRoundButton.setBorderPainted(false);
         twoRoundButton.setFocusPainted(false);
+        twoRoundButton.setBackground(Color.GRAY);
         twoRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         threeRoundButton.setBounds(203, 170, 70, 75);
-        threeRoundButton.setBackground(Color.GRAY);
         threeRoundButton.setBorderPainted(false);
         threeRoundButton.setFocusPainted(false);
+        threeRoundButton.setBackground(Color.GRAY);
         threeRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         fourRoundButton.setBounds(280, 170, 70, 75);
-        fourRoundButton.setBackground(Color.GRAY);
         fourRoundButton.setBorderPainted(false);
         fourRoundButton.setFocusPainted(false);
+        fourRoundButton.setBackground(Color.GRAY);
         fourRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // modify objects of gamePanel
+        /*buttonOne.setBounds();
+        buttonOne.setBounds();
+        buttonOne.setBounds();
+        buttonOne.setBounds();
+        buttonOne.setBounds();
+        buttonOne.setBounds();
+        buttonOne.setBounds();
+        buttonOne.setBounds();
+        buttonOne.setBounds();
+        lineThree.setBounds();
+        lineFour.setBounds();
+         */
+        lineOne.setBounds(190, 0, 20, 600);
+        lineOne.setOpaque(true);
+        lineOne.setBackground(Color.BLACK);
+        lineTwo.setBounds(390, 0, 20, 600);
+        lineTwo.setOpaque(true);
+        lineTwo.setBackground(Color.BLACK);
+        lineThree.setBounds(0, 190, 600, 20);
+        lineThree.setOpaque(true);
+        lineThree.setBackground(Color.BLACK);
+        lineFour.setBounds(0, 390, 600, 20);
+        lineFour.setOpaque(true);
+        lineFour.setBackground(Color.BLACK);
     }
 
     private void addObjects() {
@@ -138,6 +195,11 @@ public class GameInterface extends JFrame {
         configGamePanel.add(twoRoundButton);
         configGamePanel.add(threeRoundButton);
         configGamePanel.add(fourRoundButton);
+        // Add to gamePanel
+        gamePanel.add(lineOne);
+        gamePanel.add(lineTwo);
+        gamePanel.add(lineThree);
+        gamePanel.add(lineFour);
     }
 
     private void initPanels() {
@@ -146,6 +208,8 @@ public class GameInterface extends JFrame {
         lobbyPanel = new JPanel(null);
 
         configGamePanel = new JPanel(null);
+
+        gamePanel = new JPanel(null);
     }
 
     private void modifyPanels() {
@@ -157,6 +221,10 @@ public class GameInterface extends JFrame {
         configGamePanel.setBounds(150, 150, 400, 400);
         configGamePanel.setEnabled(false);
         configGamePanel.setVisible(false);
+
+        gamePanel.setBounds(45, 30, 600, 600);
+        gamePanel.setEnabled(false);
+        gamePanel.setVisible(false);
     }
 
     private void addPanels() {
@@ -164,6 +232,7 @@ public class GameInterface extends JFrame {
 
         add(lobbyPanel);
         add(configGamePanel);
+        add(gamePanel);
     }
 
     private void addButtonEvents() {
@@ -188,6 +257,12 @@ public class GameInterface extends JFrame {
 
     private void startGameButtonClicked() {
         Game game = new Game(gameRounds, gameModel);
+
+        configGamePanel.setEnabled(false);
+        configGamePanel.setVisible(false);
+
+        gamePanel.setEnabled(true);
+        gamePanel.setVisible(true);
     }
 
     private void backToLobbyButtonClicked() {
