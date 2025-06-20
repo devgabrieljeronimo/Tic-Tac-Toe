@@ -1,4 +1,5 @@
-import game.GameModel;
+package game;
+import players.*;
 
 public class Game {
     private int rounds;

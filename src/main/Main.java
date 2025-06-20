@@ -1,3 +1,5 @@
+package main;
+
 import graphic_interface.GameInterface;
 
 import javax.swing.*;
