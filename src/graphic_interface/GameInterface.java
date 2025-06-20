@@ -2,8 +2,12 @@ package graphic_interface;
 
 import javax.swing.*;
 import java.awt.*;
+import game.GameModel;
 
 public class GameInterface extends JFrame {
+    // Game config
+    private int gameRounds;
+    private GameModel gameModel;
 
     private ImageIcon gameIcon;
     private JLabel gameTitle;
@@ -29,11 +33,17 @@ public class GameInterface extends JFrame {
         getContentPane().setBackground(Color.GRAY);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
+        initGameConfig();
         initPanels();
         modifyPanels();
         addPanels();
         addButtonEvents();
+    }
+
+    private void initGameConfig() {
+        // Default game config
+        gameRounds = 1;
+        gameModel = GameModel.PLAYER_VS_PLAYER;
     }
 
     private void initObjects() {
@@ -186,6 +196,9 @@ public class GameInterface extends JFrame {
 
         lobbyPanel.setEnabled(true);
         lobbyPanel.setVisible(true);
+
+        gameRounds = 1;
+        gameModel = GameModel.PLAYER_VS_PLAYER;
     }
 
     private void playerOpponentButtonClicked() {

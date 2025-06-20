@@ -1,3 +1,5 @@
+import game.GameModel;
+
 public class Game {
     private int rounds;
     private GameModel gameModel;
@@ -5,20 +7,16 @@ public class Game {
     private Player playerTwo;
     private String[][] table;
 
-    public Game(int rounds, GameModel gameModel, Player playerOne, Player playerTwo) {
+    public Game(int rounds, GameModel gameModel) {
+        playerOne = new Player(0, PlayerSymbol.O);
+        playerTwo = new Player(0, PlayerSymbol.X);
         this.rounds = rounds;
         this.gameModel = gameModel;
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
         this.table = new String[][] {
                 {" ", " ", " "},
                 {" ", " ", " "},
                 {" ", " ", " "}
         };
-    }
-
-    public void newGame() {
-
     }
 
     public void updateGame(String[][] table) {
