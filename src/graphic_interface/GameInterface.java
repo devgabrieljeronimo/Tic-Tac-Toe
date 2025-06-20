@@ -2,10 +2,10 @@ package graphic_interface;
 
 import javax.swing.*;
 import java.awt.*;
-import game.GameModel;
+import game.*;
 
 public class GameInterface extends JFrame {
-    // Game config
+    // game.Game config
     private int gameRounds;
     private GameModel gameModel;
 
@@ -57,7 +57,7 @@ public class GameInterface extends JFrame {
         currentRoundText = new JLabel("Rounds: 1");
         startGameButton = new JButton("Start");
         backToLobbyButton = new JButton("X");
-        playerOpponentButton = new JButton("Player");
+        playerOpponentButton = new JButton("players.Player");
         botOpponentButton = new JButton("Bot");
         oneRoundButton = new JButton("One");
         twoRoundButton = new JButton("Two");
@@ -187,7 +187,7 @@ public class GameInterface extends JFrame {
     }
 
     private void startGameButtonClicked() {
-
+        Game game = new Game(gameRounds, gameModel);
     }
 
     private void backToLobbyButtonClicked() {
@@ -205,12 +205,16 @@ public class GameInterface extends JFrame {
         playerOpponentButton.setBackground(Color.RED);
         botOpponentButton.setBackground(Color.GRAY);
         currentOpponentText.setText("Opponent: player");
+
+        gameModel = GameModel.PLAYER_VS_PLAYER;
     }
 
     private void botOpponentButtonClicked() {
         botOpponentButton.setBackground(Color.RED);
         playerOpponentButton.setBackground(Color.GRAY);
         currentOpponentText.setText("Opponent: bot");
+
+        gameModel = GameModel.PLAYER_VS_BOT;
     }
 
     private void oneRoundButtonClicked() {
@@ -219,6 +223,8 @@ public class GameInterface extends JFrame {
         threeRoundButton.setBackground(Color.GRAY);
         fourRoundButton.setBackground(Color.GRAY);
         currentRoundText.setText("Rounds: 1");
+
+        gameRounds = 1;
     }
 
     private void twoRoundButtonClicked() {
@@ -227,6 +233,8 @@ public class GameInterface extends JFrame {
         threeRoundButton.setBackground(Color.GRAY);
         fourRoundButton.setBackground(Color.GRAY);
         currentRoundText.setText("Rounds: 2");
+
+        gameRounds = 2;
     }
 
     private void threeRoundButtonClicked() {
@@ -235,6 +243,8 @@ public class GameInterface extends JFrame {
         twoRoundButton.setBackground(Color.GRAY);
         fourRoundButton.setBackground(Color.GRAY);
         currentRoundText.setText("Rounds: 3");
+
+        gameRounds = 3;
     }
 
     private void fourRoundButtonClicked() {
@@ -243,5 +253,7 @@ public class GameInterface extends JFrame {
         twoRoundButton.setBackground(Color.GRAY);
         threeRoundButton.setBackground(Color.GRAY);
         currentRoundText.setText("Rounds: 4");
+
+        gameRounds = 4;
     }
 }
