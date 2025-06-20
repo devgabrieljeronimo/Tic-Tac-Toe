@@ -1,6 +1,6 @@
 package players;
 
 public enum PlayerSymbol {
-    X,
-    O;
+    O,
+    X;
 }
