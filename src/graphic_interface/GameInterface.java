@@ -268,6 +268,15 @@ public class GameInterface extends JFrame {
         twoRoundButton.addActionListener(e -> twoRoundButtonClicked());
         threeRoundButton.addActionListener(e -> threeRoundButtonClicked());
         fourRoundButton.addActionListener(e -> fourRoundButtonClicked());
+        gameButtonOne.addActionListener(e -> gameButtonOneClicked());
+        gameButtonTwo.addActionListener(e -> gameButtonTwoClicked());
+        gameButtonThree.addActionListener(e -> gameButtonThreeClicked());
+        gameButtonFour.addActionListener(e -> gameButtonFourClicked());
+        gameButtonFive.addActionListener(e -> gameButtonFiveClicked());
+        gameButtonSix.addActionListener(e -> gameButtonSixClicked());
+        gameButtonSeven.addActionListener(e -> gameButtonSevenClicked());
+        gameButtonEight.addActionListener(e -> gameButtonEightClicked());
+        gameButtonNine.addActionListener(e -> gameButtonNineClicked());
     }
 
     private void playButtonClicked() {
