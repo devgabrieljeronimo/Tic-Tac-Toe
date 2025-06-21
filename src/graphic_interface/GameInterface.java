@@ -6,7 +6,9 @@ import java.awt.*;
 import game.*;
 
 public class GameInterface extends JFrame {
-    // game.Game config
+    // Game
+    private Game game;
+    // Game config
     private int gameRounds;
     private GameModel gameModel;
 
@@ -70,7 +72,7 @@ public class GameInterface extends JFrame {
         threeRoundButton = new JButton("Three");
         fourRoundButton = new JButton("Four");
         // Instance  objects of gamePanel
-        gameButtonOne = new JButton("O");
+        gameButtonOne = new JButton();
         gameButtonTwo = new JButton();
         gameButtonThree = new JButton();
         gameButtonFour = new JButton();
@@ -277,7 +279,7 @@ public class GameInterface extends JFrame {
     }
 
     private void startGameButtonClicked() {
-        Game game = new Game(gameRounds, gameModel);
+        game = new Game(gameRounds, gameModel);
 
         configGamePanel.setEnabled(false);
         configGamePanel.setVisible(false);

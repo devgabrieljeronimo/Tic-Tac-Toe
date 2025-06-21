@@ -6,14 +6,19 @@ public class Game {
     private GameModel gameModel;
     private Player playerOne;
     private Player playerTwo;
+    private Player playerTime;
     private String[][] table;
 
     public Game(int rounds, GameModel gameModel) {
-        playerOne = new Player(0, PlayerSymbol.O);
-        playerTwo = new Player(0, PlayerSymbol.X);
         this.rounds = rounds;
         this.gameModel = gameModel;
-        this.table = new String[][] {
+
+        playerOne = new Player(0, PlayerSymbol.O);
+        playerTwo = new Player(0, PlayerSymbol.X);
+
+        playerTime = playerOne;
+
+        table = new String[][] {
                 {" ", " ", " "},
                 {" ", " ", " "},
                 {" ", " ", " "}
@@ -71,5 +76,18 @@ public class Game {
 
     public void setTable(String[][] table) {
         this.table = table;
+    }
+
+    public Player getPlayerTime() {
+        return playerTime;
+    }
+
+    public void setPlayerTime() {
+        if(playerTime == playerOne) {
+            playerTime = playerTwo;
+        }
+        else {
+            playerTime = playerOne;
+        }
     }
 }
