@@ -2,16 +2,6 @@ package graphic_interface;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.font.GlyphVector;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ImageObserver;
-import java.awt.image.RenderedImage;
-import java.awt.image.renderable.RenderableImage;
-import java.text.AttributedCharacterIterator;
-import java.util.Map;
 
 import game.*;
 
@@ -30,11 +20,9 @@ public class GameInterface extends JFrame {
             oneRoundButton, twoRoundButton, threeRoundButton, fourRoundButton;
     private JPanel configGamePanel;
 
-    private Image OImage;
-    private Image XImage;
     private JLabel lineOne, lineTwo, lineThree, lineFour;
-    private JButton buttonOne, buttonTwo, buttonThree, buttonFour,
-            buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine;
+    private JButton gameButtonOne, gameButtonTwo, gameButtonThree, gameButtonFour,
+            gameButtonFive, gameButtonSix, gameButtonSeven, gameButtonEight, gameButtonNine;
     private JPanel gamePanel;
 
     public GameInterface() {
@@ -82,15 +70,15 @@ public class GameInterface extends JFrame {
         threeRoundButton = new JButton("Three");
         fourRoundButton = new JButton("Four");
         // Instance  objects of gamePanel
-        buttonOne = new JButton();
-        buttonTwo = new JButton();
-        buttonThree = new JButton();
-        buttonFour = new JButton();
-        buttonFive = new JButton();
-        buttonSix = new JButton();
-        buttonSeven = new JButton();
-        buttonEight = new JButton();
-        buttonNine = new JButton();
+        gameButtonOne = new JButton("O");
+        gameButtonTwo = new JButton();
+        gameButtonThree = new JButton();
+        gameButtonFour = new JButton();
+        gameButtonFive = new JButton();
+        gameButtonSix = new JButton();
+        gameButtonSeven = new JButton();
+        gameButtonEight = new JButton();
+        gameButtonNine = new JButton();
         lineOne = new JLabel();
         lineTwo = new JLabel();
         lineThree = new JLabel();
@@ -152,18 +140,42 @@ public class GameInterface extends JFrame {
         fourRoundButton.setBackground(Color.GRAY);
         fourRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         // modify objects of gamePanel
-        /*buttonOne.setBounds();
-        buttonOne.setBounds();
-        buttonOne.setBounds();
-        buttonOne.setBounds();
-        buttonOne.setBounds();
-        buttonOne.setBounds();
-        buttonOne.setBounds();
-        buttonOne.setBounds();
-        buttonOne.setBounds();
-        lineThree.setBounds();
-        lineFour.setBounds();
-         */
+        gameButtonOne.setBounds(0, 0, 190, 190);
+        gameButtonOne.setFont(new Font("gameFont", Font.BOLD, 150));
+        gameButtonOne.setBorderPainted(false);
+        gameButtonOne.setFocusPainted(false);
+        gameButtonTwo.setBounds(210, 0, 180, 190);
+        gameButtonTwo.setFont(new Font("gameFont", Font.BOLD, 150));
+        gameButtonTwo.setBorderPainted(false);
+        gameButtonTwo.setFocusPainted(false);
+        gameButtonThree.setBounds(410, 0, 190, 190);
+        gameButtonThree.setFont(new Font("gameFont", Font.BOLD, 150));
+        gameButtonThree.setBorderPainted(false);
+        gameButtonThree.setFocusPainted(false);
+        gameButtonFour.setBounds(0, 210, 190, 180);
+        gameButtonFour.setFont(new Font("gameFont", Font.BOLD, 150));
+        gameButtonFour.setBorderPainted(false);
+        gameButtonFour.setFocusPainted(false);
+        gameButtonFive.setBounds(210, 210, 180, 180);
+        gameButtonFive.setFont(new Font("gameFont", Font.BOLD, 150));
+        gameButtonFive.setBorderPainted(false);
+        gameButtonFive.setFocusPainted(false);
+        gameButtonSix.setBounds(410, 210, 190, 180);
+        gameButtonSix.setFont(new Font("gameFont", Font.BOLD, 150));
+        gameButtonSix.setBorderPainted(false);
+        gameButtonSix.setFocusPainted(false);
+        gameButtonSeven.setBounds(0, 410, 190, 190);
+        gameButtonSeven.setFont(new Font("gameFont", Font.BOLD, 150));
+        gameButtonSeven.setBorderPainted(false);
+        gameButtonSeven.setFocusPainted(false);
+        gameButtonEight.setBounds(210, 410, 180, 190);
+        gameButtonEight.setFont(new Font("gameFont", Font.BOLD, 150));
+        gameButtonEight.setBorderPainted(false);
+        gameButtonEight.setFocusPainted(false);
+        gameButtonNine.setBounds(410, 410, 190, 190);
+        gameButtonNine.setFont(new Font("gameFont", Font.BOLD, 150));
+        gameButtonNine.setBorderPainted(false);
+        gameButtonNine.setFocusPainted(false);
         lineOne.setBounds(190, 0, 20, 600);
         lineOne.setOpaque(true);
         lineOne.setBackground(Color.BLACK);
@@ -196,6 +208,15 @@ public class GameInterface extends JFrame {
         configGamePanel.add(threeRoundButton);
         configGamePanel.add(fourRoundButton);
         // Add to gamePanel
+        gamePanel.add(gameButtonOne);
+        gamePanel.add(gameButtonTwo);
+        gamePanel.add(gameButtonThree);
+        gamePanel.add(gameButtonFour);
+        gamePanel.add(gameButtonFive);
+        gamePanel.add(gameButtonSix);
+        gamePanel.add(gameButtonSeven);
+        gamePanel.add(gameButtonEight);
+        gamePanel.add(gameButtonNine);
         gamePanel.add(lineOne);
         gamePanel.add(lineTwo);
         gamePanel.add(lineThree);
@@ -330,5 +351,41 @@ public class GameInterface extends JFrame {
         currentRoundText.setText("Rounds: 4");
 
         gameRounds = 4;
+    }
+
+    private void gameButtonOneClicked() {
+
+    }
+
+    private void gameButtonTwoClicked() {
+
+    }
+
+    private void gameButtonThreeClicked() {
+
+    }
+
+    private void gameButtonFourClicked() {
+
+    }
+
+    private void gameButtonFiveClicked() {
+
+    }
+
+    private void gameButtonSixClicked() {
+
+    }
+
+    private void gameButtonSevenClicked() {
+
+    }
+
+    private void gameButtonEightClicked() {
+
+    }
+
+    private void gameButtonNineClicked() {
+
     }
 }
