@@ -364,12 +364,36 @@ public class GameInterface extends JFrame {
         gameRounds = 4;
     }
 
-    private void gameButtonOneClicked() {
+    private void drawSymbolOne(JButton gameButton) {
+        gameButton.setText("O");
+        gameButton.setForeground(Color.BLUE);
+    }
 
+    private void drawSymbolTwo(JButton gameButton) {
+        gameButton.setText("X");
+        gameButton.setForeground(Color.RED);
+    }
+
+    private void gameButtonOneClicked() {
+        gameButtonOne.setEnabled(false);
+
+        if(game.getPlayerTime() == game.getPlayerOne()) {
+            drawSymbolOne(gameButtonOne);
+        }
+        else {
+            drawSymbolTwo(gameButtonOne);
+        }
     }
 
     private void gameButtonTwoClicked() {
+        gameButtonTwo.setEnabled(false);
 
+        if(game.getPlayerTime() == game.getPlayerOne()) {
+            drawSymbolOne(gameButtonTwo);
+        }
+        else {
+            drawSymbolTwo(gameButtonTwo);
+        }
     }
 
     private void gameButtonThreeClicked() {
