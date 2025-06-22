@@ -3,16 +3,16 @@ import players.*;
 
 public class Game {
     private int rounds;
-    private GameModel gameModel;
+    private GameMode gameMode;
     private Player playerOne;
     private Player playerTwo;
     private Player playerTime;
     private boolean gameEnded;
     private char[][] table;
 
-    public Game(int rounds, GameModel gameModel) {
+    public Game(int rounds, GameMode gameMode) {
         this.rounds = rounds;
-        this.gameModel = gameModel;
+        this.gameMode = gameMode;
 
         playerOne = new Player(0, 'O');
         playerTwo = new Player(0, 'X');
@@ -55,12 +55,12 @@ public class Game {
         }
     }
 
-    public GameModel getGameModel() {
-        return gameModel;
+    public GameMode getGameModel() {
+        return gameMode;
     }
 
-    public void setGameModel(GameModel gameModel) {
-        this.gameModel = gameModel;
+    public void setGameModel(GameMode gameMode) {
+        this.gameMode = gameMode;
     }
 
     public Player getPlayerOne() {

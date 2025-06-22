@@ -1,6 +1,6 @@
 package game;
 
-public enum GameModel {
+public enum GameMode {
     PLAYER_VS_PLAYER,
     PLAYER_VS_BOT;
 }

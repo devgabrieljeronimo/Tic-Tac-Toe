@@ -10,7 +10,7 @@ public class GameInterface extends JFrame {
     private Game game;
     // Game config
     private int gameRounds;
-    private GameModel gameModel;
+    private GameMode gameMode;
 
     private ImageIcon gameIcon;
     private JLabel gameTitle;
@@ -51,7 +51,7 @@ public class GameInterface extends JFrame {
     private void initGameConfig() {
         // Default game config
         gameRounds = 1;
-        gameModel = GameModel.PLAYER_VS_PLAYER;
+        gameMode = GameMode.PLAYER_VS_PLAYER;
     }
 
     private void initObjects() {
@@ -289,7 +289,7 @@ public class GameInterface extends JFrame {
     }
 
     private void startGameButtonClicked() {
-        game = new Game(gameRounds, gameModel);
+        game = new Game(gameRounds, gameMode);
 
         configGamePanel.setEnabled(false);
         configGamePanel.setVisible(false);
@@ -306,7 +306,7 @@ public class GameInterface extends JFrame {
         lobbyPanel.setVisible(true);
 
         gameRounds = 1;
-        gameModel = GameModel.PLAYER_VS_PLAYER;
+        gameMode = GameMode.PLAYER_VS_PLAYER;
     }
 
     private void playerOpponentButtonClicked() {
@@ -314,7 +314,7 @@ public class GameInterface extends JFrame {
         botOpponentButton.setBackground(Color.GRAY);
         currentOpponentText.setText("Opponent: player");
 
-        gameModel = GameModel.PLAYER_VS_PLAYER;
+        gameMode = GameMode.PLAYER_VS_PLAYER;
     }
 
     private void botOpponentButtonClicked() {
@@ -322,7 +322,7 @@ public class GameInterface extends JFrame {
         playerOpponentButton.setBackground(Color.GRAY);
         currentOpponentText.setText("Opponent: bot");
 
-        gameModel = GameModel.PLAYER_VS_BOT;
+        gameMode = GameMode.PLAYER_VS_BOT;
     }
 
     private void oneRoundButtonClicked() {
