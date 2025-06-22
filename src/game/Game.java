@@ -8,7 +8,7 @@ public class Game {
     private Player playerTwo;
     private Player playerTime;
     private boolean gameEnded;
-    private PlayerSymbol[][] table;
+    private char[][] table;
 
     public Game(int rounds, GameModel gameModel) {
         this.rounds = rounds;
@@ -21,10 +21,10 @@ public class Game {
 
         gameEnded = false;
 
-        table = new PlayerSymbol[][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+        table = new char[][] {
+                {' ', ' ' , ' '},
+                {' ', ' ' , ' '},
+                {' ', ' ' , ' '}
         };
     }
 
@@ -79,11 +79,11 @@ public class Game {
         this.playerTwo = playerTwo;
     }
 
-    public PlayerSymbol[][] getTable() {
+    public char[][] getTable() {
         return table;
     }
 
-    public void setTable(PlayerSymbol[][] table) {
+    public void setTable(char[][] table) {
         this.table = table;
     }
 
