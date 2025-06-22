@@ -35,11 +35,35 @@ public class Game {
     }
 
     public void verifyGame() {
+        for(int i = 0; i < 3; i++) {
+            if(table[i][0] == table[i][1] && table[i][1] ==  table[i][2]) {
+                endGame(table[i][0]);
+            }
+        }
 
+        for(int i = 0; i < 3; i++) {
+            if(table[0][i] == table[1][i] && table[2][i] == table[3][i]) {
+                endGame(table[0][1]);
+            }
+        }
+
+        if(table[0][0] == table[1][1] && table[1][1] == table[2][2]) {
+            endGame(table[0][0]);
+        }
+        else if(table[0][2] == table[1][1] && table[1][1] == table[2][0]) {
+            endGame(table[0][2]);
+        }
     }
 
-    public void endGame() {
+    public void endGame(char winnerSymbol) {
+        if(winnerSymbol == playerOne.getSymbol()) {
+            
+        }
+        else {
 
+        }
+
+        gameEnded = true;
     }
 
     public int getRounds() {
