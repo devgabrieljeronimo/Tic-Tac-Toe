@@ -268,15 +268,16 @@ public class GameInterface extends JFrame {
         twoRoundButton.addActionListener(e -> twoRoundButtonClicked());
         threeRoundButton.addActionListener(e -> threeRoundButtonClicked());
         fourRoundButton.addActionListener(e -> fourRoundButtonClicked());
-        gameButtonOne.addActionListener(e -> gameButtonOneClicked());
-        gameButtonTwo.addActionListener(e -> gameButtonTwoClicked());
+
+        gameButtonOne.addActionListener(e -> gameButtonOneClicked(0, 0));
+        /*gameButtonTwo.addActionListener(e -> gameButtonTwoClicked());
         gameButtonThree.addActionListener(e -> gameButtonThreeClicked());
         gameButtonFour.addActionListener(e -> gameButtonFourClicked());
         gameButtonFive.addActionListener(e -> gameButtonFiveClicked());
         gameButtonSix.addActionListener(e -> gameButtonSixClicked());
         gameButtonSeven.addActionListener(e -> gameButtonSevenClicked());
         gameButtonEight.addActionListener(e -> gameButtonEightClicked());
-        gameButtonNine.addActionListener(e -> gameButtonNineClicked());
+        gameButtonNine.addActionListener(e -> gameButtonNineClicked());*/
     }
 
     private void playButtonClicked() {
@@ -364,27 +365,33 @@ public class GameInterface extends JFrame {
         gameRounds = 4;
     }
 
-    private void drawSymbolOne(JButton gameButton) {
+    private void drawSymbolOne(JButton gameButton, int positionX, int positionY) {
         gameButton.setText("O");
         gameButton.setForeground(Color.BLUE);
         gameButton.setEnabled(false);
+
+        game.setPlayerTime();
     }
 
-    private void drawSymbolTwo(JButton gameButton) {
+    private void drawSymbolTwo(JButton gameButton, int positionX, int positionY) {
         gameButton.setText("X");
         gameButton.setForeground(Color.RED);
+        gameButton.setEnabled(false);
+
+        game.updateGame(positionX, positionY);
     }
 
-    private void gameButtonOneClicked() {
+    private void gameButtonOneClicked(int positionX, int positionY) {
         if(game.getPlayerTime() == game.getPlayerOne()) {
-            drawSymbolOne(gameButtonOne);
+            drawSymbolOne(gameButtonOne, positionX, positionY);
         }
         else {
-            drawSymbolTwo(gameButtonOne);
+            drawSymbolTwo(gameButtonOne, positionX, positionY);
+
         }
     }
 
-    private void gameButtonTwoClicked() {
+    /*private void gameButtonTwoClicked() {
         if(game.getPlayerTime() == game.getPlayerOne()) {
             drawSymbolOne(gameButtonTwo);
         }
@@ -454,5 +461,5 @@ public class GameInterface extends JFrame {
         else {
             drawSymbolTwo(gameButtonNine);
         }
-    }
+    }*/
 }
