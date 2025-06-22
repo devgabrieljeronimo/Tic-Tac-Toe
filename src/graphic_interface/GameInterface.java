@@ -365,23 +365,37 @@ public class GameInterface extends JFrame {
         gameRounds = 4;
     }
 
+    private void verifyCurrentGame() {
+        if(game.isGameEnded()) {
+            game = null;
+            showEndPanel();
+        }
+        else if(game.isRoundEnded()) {
+            newRound();
+        }
+    }
+
+    private void newRound() {
+        game.setRoundEnded(false);
+    }
+
+    private void showEndPanel() {
+
+    }
+
     private void gameButtonClicked(JButton gameButton, int positionX, int positionY) {
         if(game.getPlayerTime() == game.getPlayerOne()) {
             gameButton.setText("O");
             gameButton.setForeground(Color.BLUE);
             gameButton.setEnabled(false);
-
-            game.updateGame(positionX, positionY);
         }
         else {
             gameButton.setText("X");
             gameButton.setForeground(Color.RED);
             gameButton.setEnabled(false);
-
-            game.updateGame(positionX, positionY);
-
-            if(game.isGameEnded()) {
-            }
         }
+
+        game.updateGame(positionX, positionY);
+        verifyCurrentGame();
     }
 }

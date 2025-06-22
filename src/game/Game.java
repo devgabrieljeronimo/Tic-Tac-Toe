@@ -8,6 +8,7 @@ public class Game {
     private Player playerOne;
     private Player playerTwo;
     private Player playerTime;
+    private boolean roundEnded;
     private boolean gameEnded;
     private char[][] table;
 
@@ -22,6 +23,7 @@ public class Game {
 
         playerTime = playerOne;
 
+        roundEnded = false;
         gameEnded = false;
 
         table = new char[][] {
@@ -71,7 +73,22 @@ public class Game {
         }
         else {
             currentRound += 1;
+            roundEnded = true;
+            
+            table = new char[][] {
+                    {' ', ' ', ' '},
+                    {' ', ' ', ' '},
+                    {' ', ' ', ' '}
+            };
         }
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
+    }
+
+    public void setCurrentRound(int currentRound) {
+        this.currentRound = currentRound;
     }
 
     public int getRounds() {
@@ -122,6 +139,14 @@ public class Game {
         else {
             playerTime = playerOne;
         }
+    }
+
+    public boolean isRoundEnded() {
+        return roundEnded;
+    }
+
+    public void setRoundEnded(boolean roundEnded) {
+        this.roundEnded = roundEnded;
     }
 
     public boolean isGameEnded() {
