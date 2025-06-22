@@ -9,17 +9,18 @@ public class Player {
         this.playerSymbol = playerSymbol;
     }
 
+    public void addPoint() {
+        if(points < 4) {
+            points += 1;
+        }
+    }
+
     public int getPoints() {
         return points;
     }
 
     public void setPoints(int points) {
-        if(points == 1) {
-            this.points = points;
-        }
-        else {
-            System.out.println("ERROR!");
-        }
+        this.points = points;
     }
 
     public char getSymbol() {

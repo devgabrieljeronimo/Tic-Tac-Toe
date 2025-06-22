@@ -2,6 +2,7 @@ package game;
 import players.*;
 
 public class Game {
+    private int currentRound;
     private int rounds;
     private GameMode gameMode;
     private Player playerOne;
@@ -11,6 +12,8 @@ public class Game {
     private char[][] table;
 
     public Game(int rounds, GameMode gameMode) {
+        currentRound = 1;
+
         this.rounds = rounds;
         this.gameMode = gameMode;
 
@@ -36,34 +39,39 @@ public class Game {
 
     public void verifyGame() {
         for(int i = 0; i < 3; i++) {
-            if(table[i][0] == table[i][1] && table[i][1] ==  table[i][2]) {
+            if(table[i][0] != ' ' && table[i][0] == table[i][1] && table[i][1] ==  table[i][2]) {
                 endGame(table[i][0]);
             }
         }
 
         for(int i = 0; i < 3; i++) {
-            if(table[0][i] == table[1][i] && table[2][i] == table[3][i]) {
+            if(table[0][i] != ' ' && table[0][i] == table[1][i] && table[2][i] == table[3][i]) {
                 endGame(table[0][1]);
             }
         }
 
-        if(table[0][0] == table[1][1] && table[1][1] == table[2][2]) {
+        if(table[0][0] != ' ' && table[0][0] == table[1][1] && table[1][1] == table[2][2]) {
             endGame(table[0][0]);
         }
-        else if(table[0][2] == table[1][1] && table[1][1] == table[2][0]) {
+        else if(table[0][2] != ' ' && table[0][2] == table[1][1] && table[1][1] == table[2][0]) {
             endGame(table[0][2]);
         }
     }
 
     public void endGame(char winnerSymbol) {
         if(winnerSymbol == playerOne.getSymbol()) {
-            
+            playerOne.addPoint();
         }
         else {
-
+            playerTwo.addPoint();
         }
 
-        gameEnded = true;
+        if(currentRound == rounds) {
+            gameEnded = true;
+        }
+        else {
+            currentRound += 1;
+        }
     }
 
     public int getRounds() {
@@ -79,11 +87,11 @@ public class Game {
         }
     }
 
-    public GameMode getGameModel() {
+    public GameMode getGameMode() {
         return gameMode;
     }
 
-    public void setGameModel(GameMode gameMode) {
+    public void setGameMode(GameMode gameMode) {
         this.gameMode = gameMode;
     }
 
@@ -103,14 +111,6 @@ public class Game {
         this.playerTwo = playerTwo;
     }
 
-    public char[][] getTable() {
-        return table;
-    }
-
-    public void setTable(char[][] table) {
-        this.table = table;
-    }
-
     public Player getPlayerTime() {
         return playerTime;
     }
@@ -122,5 +122,17 @@ public class Game {
         else {
             playerTime = playerOne;
         }
+    }
+
+    public boolean isGameEnded() {
+        return gameEnded;
+    }
+
+    public char[][] getTable() {
+        return table;
+    }
+
+    public void setTable(char[][] table) {
+        this.table = table;
     }
 }

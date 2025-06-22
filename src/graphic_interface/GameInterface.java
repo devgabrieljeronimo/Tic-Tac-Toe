@@ -380,6 +380,8 @@ public class GameInterface extends JFrame {
 
             game.updateGame(positionX, positionY);
 
+            if(game.isGameEnded()) {
+            }
         }
     }
 }
