@@ -22,7 +22,7 @@ public class GameInterface extends JFrame {
             oneRoundButton, twoRoundButton, threeRoundButton, fourRoundButton;
     private JPanel configGamePanel;
 
-    private JLabel lineOne, lineTwo, lineThree, lineFour;
+    private JLabel[] line;
     private JButton[] gameButton;
     private JPanel gamePanel;
 
@@ -74,10 +74,10 @@ public class GameInterface extends JFrame {
         for(int i = 0; i < 8; i++) {
             gameButton[i] = new JButton();
         }
-        lineOne = new JLabel();
-        lineTwo = new JLabel();
-        lineThree = new JLabel();
-        lineFour = new JLabel();
+
+        for(int i = 0; i < 3; i++) {
+            line[i] = new JLabel();
+        }
     }
 
     private void modifyObjects() {
@@ -151,18 +151,15 @@ public class GameInterface extends JFrame {
             button.setFocusPainted(false);
         }
 
-        lineOne.setBounds(190, 0, 20, 600);
-        lineOne.setOpaque(true);
-        lineOne.setBackground(Color.BLACK);
-        lineTwo.setBounds(390, 0, 20, 600);
-        lineTwo.setOpaque(true);
-        lineTwo.setBackground(Color.BLACK);
-        lineThree.setBounds(0, 190, 600, 20);
-        lineThree.setOpaque(true);
-        lineThree.setBackground(Color.BLACK);
-        lineFour.setBounds(0, 390, 600, 20);
-        lineFour.setOpaque(true);
-        lineFour.setBackground(Color.BLACK);
+        line[0].setBounds(190, 0, 20, 600);
+        line[1].setBounds(390, 0, 20, 600);
+        line[2].setBounds(0, 190, 600, 20);
+        line[3].setBounds(0, 390, 600, 20);
+
+        for(JLabel modifyLine : line) {
+            modifyLine.setOpaque(true);
+            modifyLine.setBackground(Color.BLACK);
+        }
     }
 
     private void addObjects() {
@@ -183,14 +180,13 @@ public class GameInterface extends JFrame {
         configGamePanel.add(threeRoundButton);
         configGamePanel.add(fourRoundButton);
         // Add to gamePanel
-        for(int i = 0; i < 9; i++) {
+        for(int i = 0; i < 8; i++) {
             gamePanel.add(gameButton[i]);
         }
 
-        gamePanel.add(lineOne);
-        gamePanel.add(lineTwo);
-        gamePanel.add(lineThree);
-        gamePanel.add(lineFour);
+        for(int i = 0; i < 3; i++) {
+            gamePanel.add(line[i]);
+        }
     }
 
     private void initPanels() {
