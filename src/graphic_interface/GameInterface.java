@@ -23,8 +23,7 @@ public class GameInterface extends JFrame {
     private JPanel configGamePanel;
 
     private JLabel lineOne, lineTwo, lineThree, lineFour;
-    private JButton gameButtonOne, gameButtonTwo, gameButtonThree, gameButtonFour,
-            gameButtonFive, gameButtonSix, gameButtonSeven, gameButtonEight, gameButtonNine;
+    private JButton[] gameButton;
     private JPanel gamePanel;
 
     public GameInterface() {
@@ -72,15 +71,9 @@ public class GameInterface extends JFrame {
         threeRoundButton = new JButton("Three");
         fourRoundButton = new JButton("Four");
         // Instance  objects of gamePanel
-        gameButtonOne = new JButton();
-        gameButtonTwo = new JButton();
-        gameButtonThree = new JButton();
-        gameButtonFour = new JButton();
-        gameButtonFive = new JButton();
-        gameButtonSix = new JButton();
-        gameButtonSeven = new JButton();
-        gameButtonEight = new JButton();
-        gameButtonNine = new JButton();
+        for(int i = 0; i < 8; i++) {
+            gameButton[i] = new JButton();
+        }
         lineOne = new JLabel();
         lineTwo = new JLabel();
         lineThree = new JLabel();
@@ -142,42 +135,22 @@ public class GameInterface extends JFrame {
         fourRoundButton.setBackground(Color.GRAY);
         fourRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         // modify objects of gamePanel
-        gameButtonOne.setBounds(0, 0, 190, 190);
-        gameButtonOne.setFont(new Font("gameFont", Font.BOLD, 150));
-        gameButtonOne.setBorderPainted(false);
-        gameButtonOne.setFocusPainted(false);
-        gameButtonTwo.setBounds(210, 0, 180, 190);
-        gameButtonTwo.setFont(new Font("gameFont", Font.BOLD, 150));
-        gameButtonTwo.setBorderPainted(false);
-        gameButtonTwo.setFocusPainted(false);
-        gameButtonThree.setBounds(410, 0, 190, 190);
-        gameButtonThree.setFont(new Font("gameFont", Font.BOLD, 150));
-        gameButtonThree.setBorderPainted(false);
-        gameButtonThree.setFocusPainted(false);
-        gameButtonFour.setBounds(0, 210, 190, 180);
-        gameButtonFour.setFont(new Font("gameFont", Font.BOLD, 150));
-        gameButtonFour.setBorderPainted(false);
-        gameButtonFour.setFocusPainted(false);
-        gameButtonFive.setBounds(210, 210, 180, 180);
-        gameButtonFive.setFont(new Font("gameFont", Font.BOLD, 150));
-        gameButtonFive.setBorderPainted(false);
-        gameButtonFive.setFocusPainted(false);
-        gameButtonSix.setBounds(410, 210, 190, 180);
-        gameButtonSix.setFont(new Font("gameFont", Font.BOLD, 150));
-        gameButtonSix.setBorderPainted(false);
-        gameButtonSix.setFocusPainted(false);
-        gameButtonSeven.setBounds(0, 410, 190, 190);
-        gameButtonSeven.setFont(new Font("gameFont", Font.BOLD, 150));
-        gameButtonSeven.setBorderPainted(false);
-        gameButtonSeven.setFocusPainted(false);
-        gameButtonEight.setBounds(210, 410, 180, 190);
-        gameButtonEight.setFont(new Font("gameFont", Font.BOLD, 150));
-        gameButtonEight.setBorderPainted(false);
-        gameButtonEight.setFocusPainted(false);
-        gameButtonNine.setBounds(410, 410, 190, 190);
-        gameButtonNine.setFont(new Font("gameFont", Font.BOLD, 150));
-        gameButtonNine.setBorderPainted(false);
-        gameButtonNine.setFocusPainted(false);
+        gameButton[0].setBounds(0, 0, 190, 190);
+        gameButton[1].setBounds(210, 0, 180, 190);
+        gameButton[2].setBounds(410, 0, 190, 190);
+        gameButton[3].setBounds(0, 210, 190, 180);
+        gameButton[4].setBounds(210, 210, 180, 180);
+        gameButton[5].setBounds(410, 210, 190, 180);
+        gameButton[6].setBounds(0, 410, 190, 190);
+        gameButton[7].setBounds(210, 410, 180, 190);
+        gameButton[8].setBounds(410, 410, 190, 190);
+
+        for(JButton button : gameButton) {
+            button.setFont(new Font("gameFont", Font.BOLD, 150));
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+        }
+
         lineOne.setBounds(190, 0, 20, 600);
         lineOne.setOpaque(true);
         lineOne.setBackground(Color.BLACK);
@@ -210,15 +183,10 @@ public class GameInterface extends JFrame {
         configGamePanel.add(threeRoundButton);
         configGamePanel.add(fourRoundButton);
         // Add to gamePanel
-        gamePanel.add(gameButtonOne);
-        gamePanel.add(gameButtonTwo);
-        gamePanel.add(gameButtonThree);
-        gamePanel.add(gameButtonFour);
-        gamePanel.add(gameButtonFive);
-        gamePanel.add(gameButtonSix);
-        gamePanel.add(gameButtonSeven);
-        gamePanel.add(gameButtonEight);
-        gamePanel.add(gameButtonNine);
+        for(int i = 0; i < 9; i++) {
+            gamePanel.add(gameButton[i]);
+        }
+
         gamePanel.add(lineOne);
         gamePanel.add(lineTwo);
         gamePanel.add(lineThree);
@@ -269,15 +237,20 @@ public class GameInterface extends JFrame {
         threeRoundButton.addActionListener(e -> threeRoundButtonClicked());
         fourRoundButton.addActionListener(e -> fourRoundButtonClicked());
 
-        gameButtonOne.addActionListener(e -> gameButtonClicked(gameButtonOne, 0, 0));
-        gameButtonTwo.addActionListener(e -> gameButtonClicked(gameButtonTwo, 0, 1));
-        gameButtonThree.addActionListener(e -> gameButtonClicked(gameButtonThree, 0, 2));
-        gameButtonFour.addActionListener(e -> gameButtonClicked(gameButtonFour, 1, 0));
-        gameButtonFive.addActionListener(e -> gameButtonClicked(gameButtonFive, 1, 1));
-        gameButtonSix.addActionListener(e -> gameButtonClicked(gameButtonSix, 1, 2));
-        gameButtonSeven.addActionListener(e -> gameButtonClicked(gameButtonSeven, 2, 0));
-        gameButtonEight.addActionListener(e -> gameButtonClicked(gameButtonEight, 2, 1));
-        gameButtonNine.addActionListener(e -> gameButtonClicked(gameButtonNine, 2, 2));
+        int index = 0;
+        while(index < 8) {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; i < 3; j++) {
+                    int X = i;
+                    int Y = j;
+                    int currentIndex = index;
+                    gameButton[index].addActionListener(e -> {
+                        gameButtonClicked(currentIndex, X, Y);
+                    });
+                    index++;
+                }
+            }
+        }
     }
 
     private void playButtonClicked() {
@@ -383,16 +356,18 @@ public class GameInterface extends JFrame {
 
     }
 
-    private void gameButtonClicked(JButton gameButton, int positionX, int positionY) {
+    private void gameButtonClicked(int index, int positionX, int positionY) {
         if(game.getPlayerTime() == game.getPlayerOne()) {
-            gameButton.setText("O");
-            gameButton.setForeground(Color.BLUE);
-            gameButton.setEnabled(false);
+            gameButton[index].setText("O");
+            gameButton[index].setForeground(Color.BLUE);
+            gameButton[index].setBackground(Color.BLUE);
+            gameButton[index].setEnabled(false);
         }
         else {
-            gameButton.setText("X");
-            gameButton.setForeground(Color.RED);
-            gameButton.setEnabled(false);
+            gameButton[index].setText("X");
+            gameButton[index].setForeground(Color.RED);
+            gameButton[index].setBackground(Color.RED);
+            gameButton[index].setEnabled(false);
         }
 
         game.updateGame(positionX, positionY);

@@ -47,7 +47,7 @@ public class Game {
         }
 
         for(int i = 0; i < 3; i++) {
-            if(table[0][i] != ' ' && table[0][i] == table[1][i] && table[2][i] == table[3][i]) {
+            if(table[0][i] != ' ' && table[0][i] == table[1][i] && table[1][i] == table[2][i]) {
                 endGame(table[0][1]);
             }
         }
@@ -74,7 +74,7 @@ public class Game {
         else {
             currentRound += 1;
             roundEnded = true;
-            
+
             table = new char[][] {
                     {' ', ' ', ' '},
                     {' ', ' ', ' '},
