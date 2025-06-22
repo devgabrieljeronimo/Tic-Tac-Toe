@@ -18,8 +18,8 @@ public class GameInterface extends JFrame {
     private JPanel lobbyPanel;
 
     private JLabel gameOpponentText, gameRoundText, currentOpponentText, currentRoundText;
-    private JButton startGameButton, backToLobbyButton, playerOpponentButton, botOpponentButton,
-            oneRoundButton, twoRoundButton, threeRoundButton, fourRoundButton;
+    private JButton startGameButton, backToLobbyButton, playerOpponentButton, botOpponentButton;
+    private JButton[] roundButton;
     private JPanel configGamePanel;
 
     private JLabel[] line;
@@ -57,6 +57,7 @@ public class GameInterface extends JFrame {
         // Instance objects of lobbyPanel
         gameTitle = new JLabel("Tic\nTac\nToe");
         playButton = new JButton("Play");
+
         // Instance objects of configGamePanel
         gameOpponentText = new JLabel("Opponent");
         gameRoundText = new JLabel("Rounds");
@@ -66,16 +67,21 @@ public class GameInterface extends JFrame {
         backToLobbyButton = new JButton("X");
         playerOpponentButton = new JButton("Player");
         botOpponentButton = new JButton("Bot");
-        oneRoundButton = new JButton("One");
-        twoRoundButton = new JButton("Two");
-        threeRoundButton = new JButton("Three");
-        fourRoundButton = new JButton("Four");
+
+        roundButton = new JButton[4];
+        for(int i = 0; i < 4; i++) {
+            int rounds = i + 1;
+            roundButton[i] = new JButton("" + rounds);
+        }
+
         // Instance  objects of gamePanel
-        for(int i = 0; i < 8; i++) {
+        gameButton = new JButton[9];
+        for(int i = 0; i < 9; i++) {
             gameButton[i] = new JButton();
         }
 
-        for(int i = 0; i < 3; i++) {
+        line = new JLabel[4];
+        for(int i = 0; i < 4; i++) {
             line[i] = new JLabel();
         }
     }
@@ -114,26 +120,19 @@ public class GameInterface extends JFrame {
         botOpponentButton.setFocusPainted(false);
         botOpponentButton.setBackground(Color.GRAY);
         botOpponentButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        oneRoundButton.setBounds(50, 170, 70, 75);
-        oneRoundButton.setBorderPainted(false);
-        oneRoundButton.setFocusPainted(false);
-        oneRoundButton.setBackground(Color.GRAY);
-        oneRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        twoRoundButton.setBounds(127, 170, 70, 75);
-        twoRoundButton.setBorderPainted(false);
-        twoRoundButton.setFocusPainted(false);
-        twoRoundButton.setBackground(Color.GRAY);
-        twoRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        threeRoundButton.setBounds(203, 170, 70, 75);
-        threeRoundButton.setBorderPainted(false);
-        threeRoundButton.setFocusPainted(false);
-        threeRoundButton.setBackground(Color.GRAY);
-        threeRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        fourRoundButton.setBounds(280, 170, 70, 75);
-        fourRoundButton.setBorderPainted(false);
-        fourRoundButton.setFocusPainted(false);
-        fourRoundButton.setBackground(Color.GRAY);
-        fourRoundButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        roundButton[0].setBounds(50, 170, 70, 75);
+        roundButton[1].setBounds(127, 170, 70, 75);
+        roundButton[2].setBounds(203, 170, 70, 75);
+        roundButton[3].setBounds(280, 170, 70, 75);
+
+        for(JButton button : roundButton) {
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+            button.setBackground(Color.GRAY);
+            button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        }
+
         // modify objects of gamePanel
         gameButton[0].setBounds(0, 0, 190, 190);
         gameButton[1].setBounds(210, 0, 180, 190);
@@ -175,16 +174,17 @@ public class GameInterface extends JFrame {
         configGamePanel.add(backToLobbyButton);
         configGamePanel.add(playerOpponentButton);
         configGamePanel.add(botOpponentButton);
-        configGamePanel.add(oneRoundButton);
-        configGamePanel.add(twoRoundButton);
-        configGamePanel.add(threeRoundButton);
-        configGamePanel.add(fourRoundButton);
+
+        for(int i = 0; i < 4; i++) {
+            configGamePanel.add(roundButton[i]);
+        }
+
         // Add to gamePanel
-        for(int i = 0; i < 8; i++) {
+        for(int i = 0; i < 9; i++) {
             gamePanel.add(gameButton[i]);
         }
 
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < 4; i++) {
             gamePanel.add(line[i]);
         }
     }
@@ -228,22 +228,20 @@ public class GameInterface extends JFrame {
         backToLobbyButton.addActionListener((e -> backToLobbyButtonClicked()));
         playerOpponentButton.addActionListener(e -> playerOpponentButtonClicked());
         botOpponentButton.addActionListener(e -> botOpponentButtonClicked());
-        oneRoundButton.addActionListener(e -> oneRoundButtonClicked());
-        twoRoundButton.addActionListener(e -> twoRoundButtonClicked());
-        threeRoundButton.addActionListener(e -> threeRoundButtonClicked());
-        fourRoundButton.addActionListener(e -> fourRoundButtonClicked());
 
-        int index = 0;
-        while(index < 8) {
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; i < 3; j++) {
-                    int X = i;
-                    int Y = j;
-                    int currentIndex = index;
-                    gameButton[index].addActionListener(e -> {
-                        gameButtonClicked(currentIndex, X, Y);
-                    });
-                    index++;
+        for(int i = 0; i < 4; i++) {
+            int index = i;
+            roundButton[i].addActionListener(e -> roundButtonClicked(index));
+        }
+
+        for(int i = 0; i < 9; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int c = 0; c < 3; c++) {
+                    int index = i;
+                    int X = j;
+                    int Y = c;
+                    gameButton[i].addActionListener(e -> gameButtonClicked(index, X, Y));
+                    i++;
                 }
             }
         }
@@ -294,44 +292,15 @@ public class GameInterface extends JFrame {
         gameMode = GameMode.PLAYER_VS_BOT;
     }
 
-    private void oneRoundButtonClicked() {
-        oneRoundButton.setBackground(Color.RED);
-        twoRoundButton.setBackground(Color.GRAY);
-        threeRoundButton.setBackground(Color.GRAY);
-        fourRoundButton.setBackground(Color.GRAY);
-        currentRoundText.setText("Rounds: 1");
+    private void roundButtonClicked(int index) {
+        for(int i = 0; i < 4; i++) {
+            roundButton[i].setBackground(Color.GRAY);
+        }
 
-        gameRounds = 1;
-    }
-
-    private void twoRoundButtonClicked() {
-        twoRoundButton.setBackground(Color.RED);
-        oneRoundButton.setBackground(Color.GRAY);
-        threeRoundButton.setBackground(Color.GRAY);
-        fourRoundButton.setBackground(Color.GRAY);
-        currentRoundText.setText("Rounds: 2");
-
-        gameRounds = 2;
-    }
-
-    private void threeRoundButtonClicked() {
-        threeRoundButton.setBackground(Color.RED);
-        oneRoundButton.setBackground(Color.GRAY);
-        twoRoundButton.setBackground(Color.GRAY);
-        fourRoundButton.setBackground(Color.GRAY);
-        currentRoundText.setText("Rounds: 3");
-
-        gameRounds = 3;
-    }
-
-    private void fourRoundButtonClicked() {
-        fourRoundButton.setBackground(Color.RED);
-        oneRoundButton.setBackground(Color.GRAY);
-        twoRoundButton.setBackground(Color.GRAY);
-        threeRoundButton.setBackground(Color.GRAY);
-        currentRoundText.setText("Rounds: 4");
-
-        gameRounds = 4;
+        roundButton[index].setBackground(Color.RED);
+        int rounds = index + 1;
+        currentRoundText.setText("Rounds: " + rounds);
+        gameRounds = rounds;
     }
 
     private void verifyCurrentGame() {
@@ -352,7 +321,7 @@ public class GameInterface extends JFrame {
 
     }
 
-    private void gameButtonClicked(int index, int positionX, int positionY) {
+    private void gameButtonClicked(int index, int X, int Y) {
         if(game.getPlayerTime() == game.getPlayerOne()) {
             gameButton[index].setText("O");
             gameButton[index].setForeground(Color.BLUE);
@@ -366,7 +335,7 @@ public class GameInterface extends JFrame {
             gameButton[index].setEnabled(false);
         }
 
-        game.updateGame(positionX, positionY);
+        game.updateGame(X, Y);
         verifyCurrentGame();
     }
 }
