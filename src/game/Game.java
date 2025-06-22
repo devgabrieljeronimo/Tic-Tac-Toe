@@ -14,8 +14,8 @@ public class Game {
         this.rounds = rounds;
         this.gameModel = gameModel;
 
-        playerOne = new Player(0, PlayerSymbol.O);
-        playerTwo = new Player(0, PlayerSymbol.X);
+        playerOne = new Player(0, 'O');
+        playerTwo = new Player(0, 'X');
 
         playerTime = playerOne;
 

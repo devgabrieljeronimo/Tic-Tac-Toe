@@ -2,9 +2,9 @@ package players;
 
 public class Player {
     protected int points;
-    protected PlayerSymbol playerSymbol;
+    protected char playerSymbol;
 
-    public Player(int points, PlayerSymbol playerSymbol) {
+    public Player(int points, char playerSymbol) {
         this.points = points;
         this.playerSymbol = playerSymbol;
     }
@@ -22,7 +22,7 @@ public class Player {
         }
     }
 
-    public PlayerSymbol getSymbol() {
+    public char getSymbol() {
         return playerSymbol;
     }
 }
