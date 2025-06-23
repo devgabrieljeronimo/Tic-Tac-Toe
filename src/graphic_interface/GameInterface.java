@@ -173,15 +173,17 @@ public class GameInterface extends JFrame {
 
         // Modify objects of endPanel
         playerPoints[0].setForeground(Color.BLUE);
-        playerPoints[0].setBounds(0, 100, 200, 100);
+        playerPoints[0].setBounds(50, 100, 200, 100);
         playerPoints[1].setForeground(Color.RED);
-        playerPoints[1].setBounds(200, 100, 200, 100);
+        playerPoints[1].setBounds(50, 200, 200, 100);
 
         for(int i = 0; i < 2; i++) {
             playerPoints[i].setFont(new Font("pointsFont", Font.ITALIC, 30));
         }
 
         exitGameButton.setBounds(300, 0, 100, 50);
+        exitGameButton.setFocusPainted(false);
+        exitGameButton.setBorderPainted(false);
         exitGameButton.setText("Back");
         exitGameButton.setFont(new Font("exitFont", Font.BOLD, 20));
         exitGameButton.setBackground(Color.RED);
@@ -372,7 +374,6 @@ public class GameInterface extends JFrame {
 
         playerPoints[0].setText("Player one: " + game.getPlayerOne().getPoints());
         playerPoints[1].setText("Player two: " + game.getPlayerTwo().getPoints());
-        System.out.println("oi");
         game = null;
     }
 
