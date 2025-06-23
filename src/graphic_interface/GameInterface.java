@@ -281,6 +281,8 @@ public class GameInterface extends JFrame {
             int Y = i % 3;
             System.out.println(X + " " + Y);
             gameButton[i].addActionListener(e -> gameButtonClicked(index, X, Y));
+
+            exitGameButton.addActionListener(e -> exitGameButtonClicked());
         }
     }
 
@@ -393,5 +395,18 @@ public class GameInterface extends JFrame {
 
         game.updateGame(X, Y);
         verifyCurrentGame();
+    }
+    private void exitGameButtonClicked() {
+        endPanel.setEnabled(false);
+        endPanel.setVisible(false);
+
+        lobbyPanel.setEnabled(true);
+        lobbyPanel.setVisible(true);
+
+        for(int i = 0; i < 9; i++) {
+            gameButton[i].setText("");
+            gameButton[i].setEnabled(true);
+            gameButton[i].setBackground(Color.WHITE);
+        }
     }
 }
