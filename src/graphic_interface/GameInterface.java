@@ -95,6 +95,7 @@ public class GameInterface extends JFrame {
         playButton.setFocusPainted(false);
         playButton.setBackground(Color.GREEN);
         playButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
         // Modify objects of configGamePanel
         gameOpponentText.setBounds(170, 0, 100, 50);
         gameRoundText.setBounds(175, 120, 100, 50);
@@ -235,15 +236,11 @@ public class GameInterface extends JFrame {
         }
 
         for(int i = 0; i < 9; i++) {
-            for (int j = 0; j < 3; j++) {
-                for (int c = 0; c < 3; c++) {
-                    int index = i;
-                    int X = j;
-                    int Y = c;
-                    gameButton[i].addActionListener(e -> gameButtonClicked(index, X, Y));
-                    i++;
-                }
-            }
+            int index = i;
+            int X = i / 3;
+            int Y = i % 3;
+            System.out.println(X + " " + Y);
+            gameButton[i].addActionListener(e -> gameButtonClicked(index, X, Y));
         }
     }
 
@@ -272,6 +269,12 @@ public class GameInterface extends JFrame {
         lobbyPanel.setEnabled(true);
         lobbyPanel.setVisible(true);
 
+        playerOpponentButton.setBackground(Color.GRAY);
+        playerOpponentButton.setBackground(Color.GRAY);
+
+        for(int i = 0; i < 4; i++) {
+            roundButton[i].setBackground(Color.GRAY);
+        }
         gameRounds = 1;
         gameMode = GameMode.PLAYER_VS_PLAYER;
     }
@@ -315,6 +318,12 @@ public class GameInterface extends JFrame {
 
     private void newRound() {
         game.setRoundEnded(false);
+
+        for(int i = 0; i < 9; i++) {
+            gameButton[i].setText("");
+            gameButton[i].setBackground(Color.WHITE);
+            gameButton[i].setEnabled(true);
+        }
     }
 
     private void showEndPanel() {
