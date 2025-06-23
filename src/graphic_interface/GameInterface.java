@@ -26,6 +26,10 @@ public class GameInterface extends JFrame {
     private JButton[] gameButton;
     private JPanel gamePanel;
 
+    private JLabel[] playerPoints;
+    private JButton exitGameButton;
+    private JPanel endPanel;
+
     public GameInterface() {
         setTitle("TicTacToe");
         gameIcon = new ImageIcon(getClass().getResource("ChatGPTImage06-18-2025,16_51_27.png"));
@@ -74,7 +78,7 @@ public class GameInterface extends JFrame {
             roundButton[i] = new JButton("" + rounds);
         }
 
-        // Instance  objects of gamePanel
+        // Instance objects of gamePanel
         gameButton = new JButton[9];
         for(int i = 0; i < 9; i++) {
             gameButton[i] = new JButton();
@@ -84,6 +88,12 @@ public class GameInterface extends JFrame {
         for(int i = 0; i < 4; i++) {
             line[i] = new JLabel();
         }
+
+        // Instance objects of endPanel
+        playerPoints = new JLabel[2];
+        playerPoints[0] = new JLabel();
+        playerPoints[1] = new JLabel();
+        exitGameButton = new JButton("Back");
     }
 
     private void modifyObjects() {
@@ -160,6 +170,22 @@ public class GameInterface extends JFrame {
             modifyLine.setOpaque(true);
             modifyLine.setBackground(Color.BLACK);
         }
+
+        // Modify objects of endPanel
+        playerPoints[0].setForeground(Color.BLUE);
+        playerPoints[0].setBounds(0, 100, 200, 100);
+        playerPoints[1].setForeground(Color.RED);
+        playerPoints[1].setBounds(200, 100, 200, 100);
+
+        for(int i = 0; i < 2; i++) {
+            playerPoints[i].setFont(new Font("pointsFont", Font.ITALIC, 30));
+        }
+
+        exitGameButton.setBounds(300, 0, 100, 50);
+        exitGameButton.setText("Back");
+        exitGameButton.setFont(new Font("exitFont", Font.BOLD, 20));
+        exitGameButton.setBackground(Color.RED);
+
     }
 
     private void addObjects() {
@@ -188,6 +214,11 @@ public class GameInterface extends JFrame {
         for(int i = 0; i < 4; i++) {
             gamePanel.add(line[i]);
         }
+
+        // Add to endPanel
+        endPanel.add(playerPoints[0]);
+        endPanel.add(playerPoints[1]);
+        endPanel.add(exitGameButton);
     }
 
     private void initPanels() {
@@ -198,6 +229,8 @@ public class GameInterface extends JFrame {
         configGamePanel = new JPanel(null);
 
         gamePanel = new JPanel(null);
+
+        endPanel = new JPanel(null);
     }
 
     private void modifyPanels() {
@@ -213,6 +246,10 @@ public class GameInterface extends JFrame {
         gamePanel.setBounds(45, 30, 600, 600);
         gamePanel.setEnabled(false);
         gamePanel.setVisible(false);
+
+        endPanel.setBounds(150, 150, 400, 400);
+        endPanel.setEnabled(false);
+        endPanel.setVisible(false);
     }
 
     private void addPanels() {
@@ -221,6 +258,7 @@ public class GameInterface extends JFrame {
         add(lobbyPanel);
         add(configGamePanel);
         add(gamePanel);
+        add(endPanel);
     }
 
     private void addButtonEvents() {
@@ -308,7 +346,6 @@ public class GameInterface extends JFrame {
 
     private void verifyCurrentGame() {
         if(game.isGameEnded()) {
-            game = null;
             showEndPanel();
         }
         else if(game.isRoundEnded()) {
@@ -327,7 +364,16 @@ public class GameInterface extends JFrame {
     }
 
     private void showEndPanel() {
+        gamePanel.setEnabled(false);
+        gamePanel.setVisible(false);
 
+        endPanel.setEnabled(true);
+        endPanel.setVisible(true);
+
+        playerPoints[0].setText("Player one: " + game.getPlayerOne().getPoints());
+        playerPoints[1].setText("Player two: " + game.getPlayerTwo().getPoints());
+        System.out.println("oi");
+        game = null;
     }
 
     private void gameButtonClicked(int index, int X, int Y) {
