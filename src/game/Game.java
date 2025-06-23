@@ -1,6 +1,8 @@
 package game;
 import players.*;
 
+import java.util.Arrays;
+
 public class Game {
     private int currentRound;
     private int rounds;
@@ -40,6 +42,8 @@ public class Game {
     }
 
     public void verifyGame() {
+        boolean isTableFull = false;
+
         for(int i = 0; i < 3; i++) {
             if(table[i][0] != ' ' && table[i][0] == table[i][1] && table[i][1] ==  table[i][2]) {
                 endGame(table[i][0]);
@@ -58,21 +62,41 @@ public class Game {
         else if(table[0][2] != ' ' && table[0][2] == table[1][1] && table[1][1] == table[2][0]) {
             endGame(table[0][2]);
         }
+
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                if(table[i][j] == ' ') {
+                    isTableFull = false;
+                    break;
+                }
+                else {
+                    isTableFull = true;
+                }
+            }
+            if(!isTableFull) break;
+        }
+
+        if(isTableFull == true) {
+            endGame(' ');
+        }
     }
 
     public void endGame(char winnerSymbol) {
         if(winnerSymbol == playerOne.getSymbol()) {
             playerOne.addPoint();
         }
-        else {
+        else if(winnerSymbol == playerTwo.getSymbol()) {
             playerTwo.addPoint();
+        }
+        else {
+            System.out.println("Tie");
         }
 
         if(currentRound == rounds) {
             gameEnded = true;
         }
         else {
-            currentRound += 1;
+            currentRound++;
             roundEnded = true;
 
             table = new char[][] {
