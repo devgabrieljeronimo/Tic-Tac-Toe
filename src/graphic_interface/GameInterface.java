@@ -348,16 +348,11 @@ public class GameInterface extends JFrame {
         gameRounds = rounds;
     }
 
-    private void verifyCurrentGame() {
-        if(game.isGameEnded()) {
-            showEndPanel();
-        }
-        else if(game.isRoundEnded()) {
-            newRound();
-        }
-    }
-
     private void newRound() {
+        for(int i = 0; i < 9; i++) {
+            gameButton[i].setEnabled(false);
+        }
+
         game.setRoundEnded(false);
 
         for(int i = 0; i < 9; i++) {
@@ -377,6 +372,15 @@ public class GameInterface extends JFrame {
         playerPoints[0].setText("Player one: " + game.getPlayerOne().getPoints());
         playerPoints[1].setText("Player two: " + game.getPlayerTwo().getPoints());
         game = null;
+    }
+
+    private void verifyCurrentGame() {
+        if(game.isGameEnded()) {
+            showEndPanel();
+        }
+        else if(game.isRoundEnded()) {
+            newRound();
+        }
     }
 
     private void gameButtonClicked(int index, int X, int Y) {
