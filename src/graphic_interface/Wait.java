@@ -1,8 +1,13 @@
 package graphic_interface;
 
 public class Wait {
-    
-    private static void sleep(long millis) throws InterruptedException {
-        Thread.sleep(millis);
+
+    public static void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
