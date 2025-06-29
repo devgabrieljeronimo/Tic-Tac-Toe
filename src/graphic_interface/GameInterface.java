@@ -13,7 +13,7 @@ public class GameInterface extends JFrame {
     private GameMode gameMode;
 
     private ImageIcon gameIcon;
-    private JLabel gameTitle;
+    private JLabel[] gameTitle;
     private JButton playButton;
     private JPanel lobbyPanel;
 
@@ -59,7 +59,10 @@ public class GameInterface extends JFrame {
 
     private void initObjects() {
         // Instance objects of lobbyPanel
-        gameTitle = new JLabel("Tic\nTac\nToe");
+        gameTitle = new JLabel[3];
+        for(int i = 0; i < 3; i++) {
+            gameTitle[i] = new JLabel();
+        }
         playButton = new JButton("Play");
 
         // Instance objects of configGamePanel
@@ -98,8 +101,18 @@ public class GameInterface extends JFrame {
 
     private void modifyObjects() {
         // Modify objects of lobbyPanel
-        gameTitle.setBounds(270, 250, 200, 200);
-        gameTitle.setFont(new Font("Arial", Font.BOLD, 30));
+        gameTitle[0].setText("Tic");
+        gameTitle[0].setForeground(Color.RED);
+        gameTitle[1].setText("Tac");
+        gameTitle[1].setForeground(Color.BLACK);
+        gameTitle[2].setText("Toe");
+        gameTitle[2].setForeground(Color.BLUE);
+        for(int i = 0; i < 3; i++) {
+            int y = Integer.parseInt(i + "00");
+            gameTitle[i].setFont(new Font("TitleFont", Font.BOLD, 100));
+            gameTitle[i].setBounds(260, y, 200, 300);
+        }
+
         playButton.setBounds(300, 450, 100, 50);
         playButton.setBorderPainted(false);
         playButton.setFocusPainted(false);
@@ -192,7 +205,9 @@ public class GameInterface extends JFrame {
 
     private void addObjects() {
         // Add to lobbyPanel
-        lobbyPanel.add(gameTitle);
+        for(int i = 0; i < 3; i++) {
+            lobbyPanel.add(gameTitle[i]);
+        }
         lobbyPanel.add(playButton);
         // Add to configGamePanel
         configGamePanel.add(gameOpponentText);
@@ -348,16 +363,11 @@ public class GameInterface extends JFrame {
         gameRounds = rounds;
     }
 
-    private void verifyCurrentGame() {
-        if(game.isGameEnded()) {
-            showEndPanel();
-        }
-        else if(game.isRoundEnded()) {
-            newRound();
-        }
-    }
-
     private void newRound() {
+        for(int i = 0; i < 9; i++) {
+            gameButton[i].setEnabled(false);
+        }
+
         game.setRoundEnded(false);
 
         for(int i = 0; i < 9; i++) {
@@ -377,6 +387,15 @@ public class GameInterface extends JFrame {
         playerPoints[0].setText("Player one: " + game.getPlayerOne().getPoints());
         playerPoints[1].setText("Player two: " + game.getPlayerTwo().getPoints());
         game = null;
+    }
+
+    private void verifyCurrentGame() {
+        if(game.isGameEnded()) {
+            showEndPanel();
+        }
+        else if(game.isRoundEnded()) {
+            newRound();
+        }
     }
 
     private void gameButtonClicked(int index, int X, int Y) {
