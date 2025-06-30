@@ -288,6 +288,7 @@ public class GameInterface extends JFrame {
         for(int i = 0; i < 4; i++) {
             int index = i;
             roundButton[i].addActionListener(e -> roundButtonClicked(index));
+            System.out.println(i);
         }
 
         for(int i = 0; i < 9; i++) {
@@ -384,9 +385,16 @@ public class GameInterface extends JFrame {
 
         endPanel.setEnabled(true);
         endPanel.setVisible(true);
-        
-        playerPoints[0].setText("Player one: " + game.getPlayerOne().getPoints());
-        playerPoints[1].setText("Player two: " + game.getPlayerTwo().getPoints());
+
+        if(game.getGameMode() == GameMode.PLAYER_VS_BOT) {
+            playerPoints[0].setText("Player: " + game.getPlayerOne().getPoints());
+            playerPoints[1].setText("Bot: " + game.getBot().getPoints());
+        }
+        else {
+            playerPoints[0].setText("Player one: " + game.getPlayerOne().getPoints());
+            playerPoints[1].setText("Player two: " + game.getPlayerTwo().getPoints());
+        }
+
         game = null;
     }
 
@@ -398,7 +406,8 @@ public class GameInterface extends JFrame {
             newRound();
         }
 
-        if (game.getGameMode() == GameMode.PLAYER_VS_BOT && game.getPlayerTime() == game.getBot()) {
+        if (game != null && game.getGameMode() == GameMode.PLAYER_VS_BOT
+                && game.getPlayerTime() == game.getBot()) {
             game.getBot().play();
             Point point = game.getBot().getPoint();
             botClicked(point.x, point.y);

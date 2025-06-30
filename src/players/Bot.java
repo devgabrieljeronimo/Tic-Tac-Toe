@@ -1,11 +1,8 @@
 package players;
 
 import game.Game;
-import graphic_interface.GameInterface;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Bot extends PlayerBase{
@@ -25,8 +22,6 @@ public class Bot extends PlayerBase{
     private void verifyPlay() {
         Game game = Game.currentGame;
 
-        System.out.println("Percorrido");
-
         Random random = new Random();
         int x = random.nextInt(3);
         int y = random.nextInt(3);
@@ -36,8 +31,8 @@ public class Bot extends PlayerBase{
             verifyPlay();
         } else {
             game.setTable(playerSymbol, x, y);
-            System.out.println("Bot jogou em: " + x + "," + y);
-            game.updateGame(x, y); // atualiza regras e troca turno
+            System.out.println("Bot played in: " + x + "," + y);
+            game.updateGame(x, y); // Update the game
             setPoint(x, y);
         }
     }
