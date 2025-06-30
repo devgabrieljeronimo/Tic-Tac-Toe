@@ -376,10 +376,6 @@ public class GameInterface extends JFrame {
             gameButton[i].setEnabled(true);
         }
 
-        if(game.getGameMode() == GameMode.PLAYER_VS_BOT && game.getPlayerTime() == game.getBot()) {
-            game.getBot().play();
-            System.out.println("bot jogou");
-        }
     }
 
     private void showEndPanel() {
@@ -388,7 +384,7 @@ public class GameInterface extends JFrame {
 
         endPanel.setEnabled(true);
         endPanel.setVisible(true);
-
+        
         playerPoints[0].setText("Player one: " + game.getPlayerOne().getPoints());
         playerPoints[1].setText("Player two: " + game.getPlayerTwo().getPoints());
         game = null;
@@ -400,6 +396,14 @@ public class GameInterface extends JFrame {
         }
         else if(game.isRoundEnded()) {
             newRound();
+        }
+
+        if (game.getGameMode() == GameMode.PLAYER_VS_BOT && game.getPlayerTime() == game.getBot()) {
+            game.getBot().play();
+            Point point = game.getBot().getPoint();
+            botClicked(point.x, point.y);
+
+            verifyCurrentGame(); // checar novamente após jogada do bot
         }
     }
 
@@ -423,6 +427,16 @@ public class GameInterface extends JFrame {
         game.updateGame(X, Y);
         verifyCurrentGame();
     }
+
+    private void botClicked(int x, int y) {
+        int index = x * 3 + y;
+
+        gameButton[index].setText("X");
+        gameButton[index].setForeground(Color.RED);
+        gameButton[index].setBackground(Color.RED);
+        gameButton[index].setEnabled(false);
+    }
+
     private void exitGameButtonClicked() {
         endPanel.setEnabled(false);
         endPanel.setVisible(false);
