@@ -9,7 +9,8 @@ public class Game {
     private GameMode gameMode;
     private Player playerOne;
     private Player playerTwo;
-    private Player playerTime;
+    private Bot bot;
+    private PlayerBase playerTime;
     private boolean roundEnded;
     private boolean gameEnded;
     private char[][] table;
@@ -20,8 +21,14 @@ public class Game {
         this.rounds = rounds;
         this.gameMode = gameMode;
 
-        playerOne = new Player(0, 'O');
-        playerTwo = new Player(0, 'X');
+        if(gameMode == GameMode.PLAYER_VS_BOT) {
+            playerOne = new Player(0, 'O');
+            bot = new Bot(0, 'X');
+        }
+        else {
+            playerOne = new Player(0, 'O');
+            playerTwo = new Player(0, 'X');
+        }
 
         playerTime = playerOne;
 
@@ -82,14 +89,19 @@ public class Game {
     }
 
     public void endGame(char winnerSymbol) {
-        if(winnerSymbol == playerOne.getSymbol()) {
-            playerOne.addPoint();
-        }
-        else if(winnerSymbol == playerTwo.getSymbol()) {
-            playerTwo.addPoint();
+        if(gameMode == GameMode.PLAYER_VS_BOT) {
+            if (winnerSymbol == playerOne.getSymbol()) {
+                playerOne.addPoint();
+            } else if (winnerSymbol == bot.getSymbol()) {
+                bot.addPoint();
+            }
         }
         else {
-            System.out.println("Tie");
+            if (winnerSymbol == playerOne.getSymbol()) {
+                playerOne.addPoint();
+            } else if (winnerSymbol == playerTwo.getSymbol()) {
+                playerTwo.addPoint();
+            }
         }
 
         if(currentRound == rounds) {
@@ -152,16 +164,34 @@ public class Game {
         this.playerTwo = playerTwo;
     }
 
-    public Player getPlayerTime() {
+    public Bot getBot() {
+        return bot;
+    }
+
+    public void setBot(Bot bot) {
+        this.bot = bot;
+    }
+
+    public PlayerBase getPlayerTime() {
         return playerTime;
     }
 
     public void setPlayerTime() {
-        if(playerTime == playerOne) {
-            playerTime = playerTwo;
+        if(gameMode == GameMode.PLAYER_VS_BOT){
+            if(playerTime == playerOne) {
+                playerTime = bot;
+            }
+            else {
+                playerTime = playerOne;
+            }
         }
         else {
-            playerTime = playerOne;
+            if(playerTime == playerOne) {
+                playerTime = playerTwo;
+            }
+            else {
+                playerTime = playerOne;
+            }
         }
     }
 

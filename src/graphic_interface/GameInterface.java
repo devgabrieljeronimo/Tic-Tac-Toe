@@ -375,6 +375,11 @@ public class GameInterface extends JFrame {
             gameButton[i].setBackground(Color.WHITE);
             gameButton[i].setEnabled(true);
         }
+
+        if(game.getGameMode() == GameMode.PLAYER_VS_BOT && game.getPlayerTime() == game.getBot()) {
+            game.getBot().play();
+            System.out.println("bot jogou");
+        }
     }
 
     private void showEndPanel() {
@@ -399,7 +404,10 @@ public class GameInterface extends JFrame {
     }
 
     private void gameButtonClicked(int index, int X, int Y) {
-        if(game.getPlayerTime() == game.getPlayerOne()) {
+        if(game.getPlayerTime() != game.getPlayerOne() && game.getGameMode() == GameMode.PLAYER_VS_BOT) {
+            return;
+        }
+        else if(game.getPlayerTime() == game.getPlayerOne()) {
             gameButton[index].setText("O");
             gameButton[index].setForeground(Color.BLUE);
             gameButton[index].setBackground(Color.BLUE);
