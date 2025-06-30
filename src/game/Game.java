@@ -218,4 +218,8 @@ public class Game {
     public void setTable(char[][] table) {
         this.table = table;
     }
+
+    public static void setTable(char playerChar, int x, int y) {
+        table[x][y] = playerChar;
+    }
 }
