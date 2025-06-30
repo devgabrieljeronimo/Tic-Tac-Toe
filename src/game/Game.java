@@ -13,7 +13,7 @@ public class Game {
     private PlayerBase playerTime;
     private boolean roundEnded;
     private boolean gameEnded;
-    private char[][] table;
+    private static char[][] table;
 
     public Game(int rounds, GameMode gameMode) {
         currentRound = 1;
@@ -209,6 +209,10 @@ public class Game {
 
     public char[][] getTable() {
         return table;
+    }
+
+    public static char getTable(int x, int y) {
+        return table[x][y];
     }
 
     public void setTable(char[][] table) {
