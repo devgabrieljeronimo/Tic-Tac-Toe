@@ -1,10 +1,16 @@
 package players;
 
 import game.Game;
+import graphic_interface.GameInterface;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Bot extends PlayerBase{
+
+    private Point point;
 
     public Bot(int points, char playerSymbol) {
         this.points = points;
@@ -12,28 +18,35 @@ public class Bot extends PlayerBase{
     }
 
     public void play() {
-        /*int voidPlaces = 0;
 
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                if(Game.getTable(i, j) == ' ') {
-                    voidPlaces++;
-                }
-            }
-        }*/
         verifyPlay();
     }
 
-    public void verifyPlay() {
+    private void verifyPlay() {
+        Game game = Game.currentGame;
+
+        System.out.println("Percorrido");
+
         Random random = new Random();
         int x = random.nextInt(3);
         int y = random.nextInt(3);
 
-        if(Game.getTable(x, y) != ' ') {
-            verifyPlay();
-        }
-        else {
 
+        if(game.getTable(x, y) != ' ') {
+            verifyPlay();
+        } else {
+            game.setTable(playerSymbol, x, y);
+            System.out.println("Bot jogou em: " + x + "," + y);
+            game.updateGame(x, y); // atualiza regras e troca turno
+            setPoint(x, y);
         }
+    }
+
+    public Point getPoint() {
+        return this.point;
+    }
+
+    public void setPoint(int x, int y) {
+        point = new Point(x, y);
     }
 }
