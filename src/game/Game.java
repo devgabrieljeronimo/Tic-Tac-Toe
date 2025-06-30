@@ -4,6 +4,7 @@ import players.*;
 import java.util.Arrays;
 
 public class Game {
+    public static Game currentGame;
     private int currentRound;
     private int rounds;
     private GameMode gameMode;
@@ -13,9 +14,10 @@ public class Game {
     private PlayerBase playerTime;
     private boolean roundEnded;
     private boolean gameEnded;
-    private static char[][] table;
+    private char[][] table;
 
     public Game(int rounds, GameMode gameMode) {
+        currentGame = this;
         currentRound = 1;
 
         this.rounds = rounds;
@@ -211,7 +213,7 @@ public class Game {
         return table;
     }
 
-    public static char getTable(int x, int y) {
+    public char getTable(int x, int y) {
         return table[x][y];
     }
 
@@ -219,7 +221,7 @@ public class Game {
         this.table = table;
     }
 
-    public static void setTable(char playerChar, int x, int y) {
+    public void setTable(char playerChar, int x, int y) {
         table[x][y] = playerChar;
     }
 }
