@@ -7,10 +7,18 @@
 </h3>
 
 ## ✅ Features
-- 🎮 PvP and PvE mode  
-- 🧠 Bot with random moves  
+- 🎮 PvP and PvE mode 
+- 🧠 Bot with random moves 
 - 🔄 Multiple rounds  
 - 🎨 User-friendly interface with Java Swing
+
+<br/>
+
+<p align="center">
+  <img src="Imagens/tic-tac-toe.png" alt="TicTacToeGame" height="150">
+  <img src="Imagens/tic-tac-toe-config-game.png" alt="TicTacToeGame" height="150">
+  <img src="Imagens/tic-tac-toe-game.png" alt="TicTacToeGame" height="150">
+</p>
 
 <br/>
 
@@ -27,8 +35,10 @@ At first, to test the project you'll need to have [JDK 21+](https://www.oracle.c
 git clone https://github.com/devgabrieljeronimo/Tic-Tac-Toe.git
 ```
 
+<br/>
+
 ## 🌐 Feedback
-Please, feel free to do a [issue]() or give me a feedback on my [email]()
+Please, feel free to do a [issue](https://github.com/devgabrieljeronimo/Tic-Tac-Toe/issues/new) or give me a feedback on my [email](gabrieljeronimo2b.007@gmail.com), your feedback is helping me to be a better programmer!
 
 <br/>
 
