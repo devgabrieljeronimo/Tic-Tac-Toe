@@ -12,13 +12,16 @@
 - 🔄 Multiple rounds  
 - 🎨 User-friendly interface with Java Swing
 
-<br/>
+<p align="left">
+  
+The interface of the project was made with Java Swing, it's looks old but works well, here is a sample:
 
-<p align="center">
-  <img src="Imagens/tic-tac-toe.png" alt="TicTacToeGame" height="150">
-  <img src="Imagens/tic-tac-toe-config-game.png" alt="TicTacToeGame" height="150">
-  <img src="Imagens/tic-tac-toe-game.png" alt="TicTacToeGame" height="150">
+|       |       |       |
+|-------|-------|-------|
+| <img src="Imagens/tic-tac-toe.png" height="150"> | <img src="Imagens/tic-tac-toe-config-game.png" height="150"> | <img src="Imagens/tic-tac-toe-game.png" height="150"> |
+
 </p>
+
 
 <br/>
 
